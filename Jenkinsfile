@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -106,12 +107,12 @@ pipeline {
             steps {
                 echo 'Deploying to EC2 #2 using Ansible...'
 
-                sh """
-                    ansible-playbook \
+                sh '''
+                    ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook \
                         -i ansible/inventory.ini \
                         ansible/deploy.yml \
                         --extra-vars "docker_image=${DOCKER_CREDS_USR}/${APP_NAME}:${IMAGE_TAG}"
-                """
+                '''
             }
         }
     }
@@ -137,3 +138,4 @@ pipeline {
         }
     }
 }
+```
