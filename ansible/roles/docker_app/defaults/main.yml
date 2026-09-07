@@ -1,4 +1,4 @@
 ---
-app_repo: "https://github.com/brishavK71/simple-docker-flask-app.git"
+app_repo: "https://github.com/Om-Kishor-Jung-Shrestha/simple-docker-flask-app.git"
 app_branch: "main"
 app_dir: "/opt/simple-docker-flask-app"
