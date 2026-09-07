@@ -1,0 +1,7 @@
+---
+- name: Provision Docker and deploy simple-docker-flask-app via Docker Compose
+  hosts: app_servers
+  become: true
+
+  roles:
+    - docker_app

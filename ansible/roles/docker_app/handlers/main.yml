@@ -1,0 +1,7 @@
+---
+- name: Build and deploy containers
+  shell: |
+    cd {{ app_dir }}
+    docker compose up -d --build
+  args:
+    executable: /bin/bash

@@ -1,0 +1,28 @@
+// stage('Deploy via Ansible') {
+        //     steps {
+        //         sshagent(credentials: ['ansible-ssh-key']) {
+        //             sh """
+        //                 ssh -o StrictHostKeyChecking=no ${params.ANSIBLE_CONTROLLER_USER}@${params.ANSIBLE_CONTROLLER_IP} '
+        //                     cd simple-docker-flask-app-ansible &&
+        //                     ansible-playbook deploy.yml --extra-vars "app_branch=${env.BRANCH_NAME ?: 'main'}"
+        //                 '
+        //             """
+        //         }
+        //     }
+        // }
+
+deploy-ssh
+
+
+// stage('Deploy via Ansible') {
+        //     steps {
+        //         sshagent(credentials: ['deploy-ssh']) {
+        //             sh """
+        //                 ssh -o StrictHostKeyChecking=no ${params.DEPLOY_VM_USER}@${params.DEPLOY_VM_IP} '
+        //                     cd simple-docker-flask-app-ansible &&
+        //                     ansible-playbook deploy.yml --extra-vars "app_branch=${env.BRANCH_NAME ?: 'main'}"
+        //                 '
+        //             """
+        //         }
+        //     }
+        // }
