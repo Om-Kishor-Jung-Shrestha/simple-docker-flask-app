@@ -1,18 +1,13 @@
 services:
   web:
-    build: .                      # build from ./Dockerfile
+    image: ${APP_IMAGE:-simple-docker-flask-app:local}
     ports:
-      # HOST:${WEB_PORT} -> maps to CONTAINER:5000. Change WEB_PORT in
-      # .env, e.g. to 9090, and rerun `docker compose up` -- no rebuild
-      # needed since it's a runtime port mapping, not baked into the image.
       - "${WEB_PORT:-8080}:5000"
     environment:
-      # These override the ENV defaults set in the Dockerfile. Values
-      # come from the .env file automatically (Compose loads it for you).
       - APP_NAME=${APP_NAME}
       - APP_COLOR=${APP_COLOR}
       - APP_ENV=${APP_ENV}
-      - REDIS_HOST=redis          # service name, resolved via Compose DNS
+      - REDIS_HOST=redis
       - REDIS_PORT=${REDIS_PORT:-6379}
     depends_on:
       redis:
@@ -23,8 +18,6 @@ services:
   redis:
     image: redis:7-alpine
     volumes:
-      # Named volume: Redis's data directory persists across
-      # `docker compose down` (but is deleted by `docker compose down -v`).
       - redis-data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -35,7 +28,7 @@ services:
       - study-net
 
 networks:
-  study-net:            # private bridge network shared by both services
+  study-net:
 
 volumes:
   redis-data:

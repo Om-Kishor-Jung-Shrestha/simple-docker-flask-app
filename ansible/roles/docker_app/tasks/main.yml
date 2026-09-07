@@ -47,5 +47,13 @@
     dest: "{{ app_dir }}"
     version: "{{ app_branch }}"
     force: true
-  register: app_checkout
-  notify: Build and deploy containers
+
+- name: Deploy Docker image
+  shell: |
+    cd {{ app_dir }}
+    export APP_IMAGE="{{ docker_image }}"
+    docker compose pull web
+    docker compose up -d
+  args:
+    executable: /bin/bash
+  when: docker_image | length > 0
